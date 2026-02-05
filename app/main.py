@@ -18,3 +18,8 @@ templates = Jinja2Templates(directory="templates")
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 
+@app.get("/", response_class=HTMLResponse)
+def read_root(request: Request):
+    # Show upload form
+    return templates.TemplateResponse("index.html", {"request": request})
+
