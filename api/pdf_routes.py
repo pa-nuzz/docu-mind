@@ -1,5 +1,6 @@
 
 #pdf_routes
+from services.metadata_extraction import extract_metadata
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from pypdf import PdfReader
 from docx import Document
@@ -58,8 +59,12 @@ async def upload_file(file: UploadFile = File(...)):
     # Clean the text
     cleaned_text = clean_text(raw_text)
 
+    # Extract metadata from cleaned text
+    metadata = extract_metadata(cleaned_text)
+
     return {
         "filename": file.filename,
         "page_count": page_count,
+        "metadata": metadata,
         "clean_text": cleaned_text
     }
