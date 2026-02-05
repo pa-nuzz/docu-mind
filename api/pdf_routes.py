@@ -11,7 +11,7 @@ from services.text_cleaning import clean_text
 
 router = APIRouter(prefix="/upload", tags=["Documents"])
 
-MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
+MAX_FILE_SIZE = 25 * 1024 * 1024  # 5MB
 UPLOAD_FOLDER = Path("uploads")
 UPLOAD_FOLDER.mkdir(exist_ok=True)
 
